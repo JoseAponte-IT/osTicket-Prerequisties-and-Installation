@@ -214,6 +214,7 @@ This page should open:
 - 🎉 Awesome we have got the osTicket webpage up and running now lets configure it so we can use it
 
 <h2>Step 16: Enable recommended extensions</h2>
+
 - Notice that some extensions aren't enabled. The site might not run as you expext if you dont setup these extensions. 
 
 - Navigate to Sites -> Default Web Site -> osTicket Click PHP Manager -> Enable or disable an extension -> Enable php_imap.dll, php_intl.dll, and php_opcache.dll 
