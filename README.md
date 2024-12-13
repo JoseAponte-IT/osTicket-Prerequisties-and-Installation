@@ -260,7 +260,7 @@ Then go to C drive -> inetpub -> wwwroot -> osTicket -> include right click on o
 
 <h2>We Have Successfully:</h2>
 
-<h2>osTicket Installed!</h2>
+- Installed and configured a web hosted ticketing system: osTicket!
 
 - Deployed Virtual Machines (VMs) on Microsoft Azure
 
@@ -269,8 +269,6 @@ Then go to C drive -> inetpub -> wwwroot -> osTicket -> include right click on o
 - Installed PHP and its required extensions to facilitate communication with the database, enabling dynamic formatting and display of data.
 
 - Created and configured a MySQL database (with HeidiSQL as a management tool) to store crucial data such as users, permissions, SLAs, and ticket information.
-
-  - Installed and configured a web hosted ticketing system - osTicket 
 
 # That Concludes this lab. In the next lab we will configure users, permsissions, access in the ticketing system and SLA's  <img src="https://media.giphy.com/media/hvRJCLFzcasrR4ia7z/giphy.gif" width="30px"/>
 
