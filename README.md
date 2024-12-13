@@ -1,6 +1,5 @@
-<p align="center">
-<img src="https://i.imgur.com/wURMIsq.jpeg"  height="50%" width="80%" alt="Setting Up in Azure "/>
-<br />
+
+<img src="https://i.imgur.com/wURMIsq.jpeg" />
 
 # osTicket Prerequisites and Installation
 This project demonstrates the process of setting up a ticketing system from scratch using osTicket on a Windows 10 virtual machine (VM) in Azure, showcasing technical proficiency in VM management, web server configuration, and PHP/MySQL integration. Follow along as I walk through each step, including the creation of the VM, installation of necessary software, and configuration of services, to set up a fully functional osTicket system. 🫡
