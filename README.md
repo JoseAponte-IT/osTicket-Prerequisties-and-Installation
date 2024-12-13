@@ -157,10 +157,10 @@ Confirm Licensing
 
 - Install PHP manager for IIS Setup:  <br/>
 <img src="https://imgur.com/RuAUGw1.png" height="80%" width="80%" alt="Setting Up in Azure"/>
- 
+
 - This sets up PHP, the language responsible with communnicating with the database,formating and displaying that data for us. This means that PHP is responsible for keepign track of the tickets, permissions etc. A.K.A its really important   
 
-- Install IIS URL Rewrite Module:  <br/>
+- Install IIS URL Rewrite Module:  
 
 <img src="https://imgur.com/465p9DH.png" height="80%" width="80%" alt="Setting Up in Azure"/>
 
@@ -190,86 +190,86 @@ Confirm Licensing
 
 <H2>Step 11: Open IIS as an admin</H2> 
 <img src="https://imgur.com/gFmrka6.png" height="80%" width="80%" alt="Setting Up in Azure"/>
-<br />
-<br />
-Next go to PHP Manager> Register new PHP version and then select the file shown:  <br/>
+
+<H2>Navigate to PHP Manager -> register new PHP version -> select file shown</H2>
+
 <img src="https://imgur.com/nlD4F1L.png" height="80%" width="80%" alt="Setting Up in Azure"/>
-<br />
-<br />
-Go back to osticketVM Home and hit Restart under Manage Server on the right side:  <br/>
+
+
+<H2>Step 12: Navigate to osTicket Home -> Manage Server(On the right side ) -> Restart </H2>
 <img src="https://imgur.com/F83Qw2a.png" height="80%" width="80%" alt="Setting Up in Azure"/>
-<br />
-<br />
-Next I'll download osTicket and copy the upload file to the wwwroot file in the inetpub directory:  <br/>
+
+<H2>Step 13: Download osTicket -> copy the upload file to the wwwroot file to the inetpub directory</H2>
 <img src="https://imgur.com/op4Cs2g.png" height="80%" width="80%" alt="Setting Up in Azure"/>
-<br />
-<br />
-Rename upload file to osTicket:  <br/>
+
+<h2>Step 14: Rename upload file to osTicket </h2>  
 <img src="https://imgur.com/ZBLsJsB.png" height="80%" width="80%" alt="Setting Up in Azure"/>
-<br />
-<br />
-Reload IIS and restart the server as I did before, then click Browse *80 (http) on the right side:  <br/>
+
+<h2> Step 15: Reload IIS -> Manage Server(On the right side ) -> Restart the server -> then click Browse *80 (http) on the right side </h2>
 <img src="https://imgur.com/JnqQOJD.png" height="80%" width="80%" alt="Setting Up in Azure"/>
-<br />
-<br />
-This page should open:  <br/>
+
+This page should open: 
 <img src="https://imgur.com/J4E020x.png" height="80%" width="80%" alt="Setting Up in Azure"/>
-<br />
-<br />
-Notice some extensions are not enabled. I'll enable a few of those in IIS. Go to Sites> Default Web Site> osTicket Click PHP Manager> Enable or disable an extension. Enable php_imap.dll, php_intl.dll, and php_opcache.dll:  <br/>
+
+- 🎉 Awesome we have got the osTicket webpage up and running now lets configure it so we can use it
+
+<h2>Step 16: Enable recommended extensions</h2>
+- Notice that some extensions aren't enabled. The site might not run as you expext if you dont setup these extensions. 
+
+- Navigate to Sites -> Default Web Site -> osTicket Click PHP Manager -> Enable or disable an extension -> Enable php_imap.dll, php_intl.dll, and php_opcache.dll 
+
 <img src="https://imgur.com/ZJCdcDV.png" height="80%" width="80%" alt="Setting Up in Azure"/>
-<br />
-<br />
-Note the changes here:  <br/>
+
+- The webpage should have those spots checkmarked now
+
 <img src="https://imgur.com/yZbaGml.png" height="80%" width="80%" alt="Setting Up in Azure"/>
-<br />
-<br />
-Next browse in file explorer to C drive> osTicket> include> ost-sampleconfig.php and remove the "sample" from the name:  <br/>
+
+<h2>Step 17: Browse in File Explorer to the C drive -> osTicket -> Include -> ost-sampleconfig.php -> Remove "sample" from the name </h2>Next browse in file explorer to C drive> osTicket> include> ost-sampleconfig.php and remove the "sample" from the name:  <br/>
+
 <img src="https://imgur.com/k6cfJaY.png" height="80%" width="80%" alt="Setting Up in Azure"/>
-<br />
-<br />
-Right-click on ost-config.php> Properties> Security> Advanced> Disable Inheritance> Remove all inherited permissions from this object:  <br/>
+
+<h2> Step 18: Right-click on ost-config.php -> Properties -> Security -> Advanced> Disable Inheritance --> Remove all inherited permissions from this object </h2>
+
 <img src="https://imgur.com/G154DIx.png" height="80%" width="80%" alt="Setting Up in Azure"/>
-<br />
-<br />
-Click on the add buton to add permissions to the file> Select a principle> type "everyone"> Check> OK> check all permissions> OK> apply> OK:  <br/>
+
+<h2> Step 19: Click on the add buton to add permissions to the file> Select a principle -> type "everyone" -> Check -> OK -> check all permissions> OK> apply -> OK </h2>
 <img src="https://imgur.com/clvmCHq.png" height="80%" width="80%" alt="Setting Up in Azure"/>
-<br />
-<br />
-Hit continue on the osTicket web page in the browser and fill out the set up page:  <br/>
+
+<H2> Step 20: Hit continue on the osTicket web page in the browser and fill out the information </H2>
+
 <img src="https://imgur.com/dYLO5Ot.png" height="80%" width="80%" alt="Setting Up in Azure"/>
-<br />
-<br />
-Before database set up we'll have to connect the database using HeidiSQL. Install HeidiSQL from setup links:  <br/>
+
+<h2> Step 21: Before database set up Connect the database using HeidiSQL. Install HeidiSQL from setup links  </h2>
+
 <img src="https://imgur.com/tyyovzJ.png" height="80%" width="80%" alt="Setting Up in Azure"/>
-<br />
-<br />
-In HeidiSQL click New> Username = root> Password = mySQL password from mySQL setup> Open:  <br/>
+
+<h2>Step 22: In HeidiSQL click New -> Username = root -> Password = mySQL password from mySQL setup -> Open </h2>
+
 <img src="https://imgur.com/xoW0TMX.png" height="80%" width="80%" alt="Setting Up in Azure"/>
-<br />
-<br />
-In HeidiSQL right click Unnamed> Create> New Database> Name it osTicket> OK. Then continue to fill out the database portion of osTicket setup. Click Install Now when done.:  <br/>
-<img src="https://imgur.com/w4VpziO.png" height="80%" width="80%" alt="Setting Up in Azure"/>
-<br />
-<br />
-Last steps, for clean up go to C drive> inetpub> wwwroot> osTicket and look for the setup file and delete it. Then go to C drive> inetpub> wwwroot> osTicket> include right click on ost-config.php> Properties> Security> Advanced> Select Everyone and click edit> only leave Read & Execute and Read checked, then apply settings:  <br/>
+
+<h2>Step 23: In HeidiSQL right click Unnamed -> Create -> New Database> Name it osTicket -> OK. 
+ Then continue to fill out the database portion of osTicket setup. Click Install Now when done</h2>
+
+<H2>Last steps:  Clean up go to C driveV-> inetpubV-> wwwrootV-> osTicket and look for the setup file and delete it
+
+Then go to C drive -> inetpub -> wwwroot -> osTicket -> include right click on ost-config.php -> Properties -> Security -> Advanced -> Select Everyone and click edit -> only leave Read & Execute and Read checked -> then apply settings </H2>
 <img src="https://imgur.com/o4GB231.png" height="80%" width="80%" alt="Setting Up in Azure"/>
-<br />
-<br />
-  
+
+  # 🎉Congratulations
+
+<h2>We Have Successfully:</h2>
+
 <h2>osTicket Installed!</h2>
 
-<b>osTicket is now installed and ready for use! In the next project I will walk you through how to configure agents, their permissions and access, users, and more!  </b>
-<br />
-<br />
-</p>
+- Deployed Virtual Machines (VMs) on Microsoft Azure
 
-<!--
- ```diff
-- text in red
-+ text in green
-! text in orange
-# text in gray
-@@ text in purple (and bold)@@
-```
---!>
+- Configured a web server with IIS to host ticketing system
+
+- Installed PHP and its required extensions to facilitate communication with the database, enabling dynamic formatting and display of data.
+
+- Created and configured a MySQL database (with HeidiSQL as a management tool) to store crucial data such as users, permissions, SLAs, and ticket information.
+
+  - Installed and configured a web hosted ticketing system - osTicket 
+
+# That Concludes this lab. In the next lab we will configure users, permsissions, access in the ticketing system and SLA's  <img src="https://media.giphy.com/media/hvRJCLFzcasrR4ia7z/giphy.gif" width="30px"/>
+
