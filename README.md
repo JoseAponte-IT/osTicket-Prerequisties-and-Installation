@@ -2,7 +2,9 @@
 <img src="https://i.imgur.com/wURMIsq.jpeg" />
 
 # osTicket Prerequisites and Installation
-This project demonstrates the process of setting up a ticketing system from scratch using osTicket on a Windows 10 virtual machine (VM) in Azure, showcasing technical proficiency in VM management, web server configuration, and PHP/MySQL integration. Follow along as I walk through each step, including the creation of the VM, installation of necessary software, and configuration of services, to set up a fully functional osTicket system. 🫡
+This project demonstrates the process of setting up a ticketing system from scratch using osTicket on a Windows 10 virtual machine (VM) in Azure, showcasing technical proficiency in VM management, web server configuration, and PHP/MySQL integration. Follow along as I walk through each step, including the creation of the VM, installation of necessary software, and configuration of services, to set up a fully functional osTicket system. 
+
+📌!!!IMPORTANT!!!Whenever installing is mentioned I am refering to installing the files in this drive [here.](https://drive.google.com/drive/u/1/)🫡
 
 <h2>Tools & Technology Used</h2>
 
@@ -18,22 +20,15 @@ This project demonstrates the process of setting up a ticketing system from scra
 
 <h2>Key Objectives:</h2>
 
-- Azure Resource Management:
-  - Created and configured Resource Groups, Virtual Networks, and Subnets.<br>
-  - Deployed Virtual Machines with custom configurations.<br>
-  - Configured Azure Network Security Groups (NSGs) to control inbound and outbound traffic.
+- Web Server Configuration: Set up IIS (Internet Information Services) on the VM, enabling CGI and installing necessary PHP extensions to support osTicket.
 
-- Network Traffic Analysis:
-   - Used Wireshark to capture and analyze network packets between two Virtual Machines.<br>
-   - Simulated network traffic with PowerShell commands, including:<br>
-     - ping -t to analyze ICMP traffic.<br>
-     - SSH for port 22 traffic.<br>
-     - RDP for port 3389 traffic.<br>
-     - nslookup for DNS traffic (port 53).<br>
-     - ipconfig /renew to monitor DHCP traffic on ports 67 and 68.
+- PHP and Database Setup: Install and configure PHP for the web server, along with setting up MySQL and using HeidiSQL to create the osTicket database.
 
-- Security Enhancements:<br>
-  - Configured NSGs to selectively allow or deny specific types of traffic, ensuring secure      communication across the network.
+- osTicket Installation: Install and configure the osTicket ticketing system, including file extraction, database connection, and basic application setup.
+
+- Security and Permissions: Implement proper file permissions and remove setup files to ensure a secure environment.
+
+- System Functionality: Complete the osTicket setup for both end-users and help desk agents, making it fully operational and accessible via a web interface.
 
 <h2>Prerequisites</h2>
 
@@ -46,70 +41,154 @@ This project demonstrates the process of setting up a ticketing system from scra
 # Project Overview
 <h2>Step 1: Create a Resource Group</h2>
 
-<p align="center">
-Navigate to Microsoft Azure and create a resource group: <br/>
-<img src="https://imgur.com/Hq1tcrY.png" height="80%" width="80%" alt="Setting Up in Azure"/>
-<br />
-<br />
-<img src="https://i.imgur.com/WDCHbEa.png" height="80%" width="80%" alt="Setting Up in Azure"/>
-<br />
-<br />
-Once my resource group is created, next I'll create the virtual machine:  <br/>
-<img src="https://i.imgur.com/agXJt2C.png" height="80%" width="80%" alt="Setting Up in Azure"/>
-<br />
-<br />
-Setting up the virtual machine:  <br/>
-<img src="https://i.imgur.com/NliPCEk.png" height="80%" width="80%" alt="Setting Up in Azure"/>
-<br />
-<br />
-<img src="https://imgur.com/QvyoJhd.png" height="80%" width="80%" alt="Setting Up in Azure"/>
-<br />
-<br />
-I'll leave all other settings to default and create this VM. Once it has been created I'll use Remote Desktop Connection to connect to the VM:  <br/>
-<img src="https://imgur.com/E9lD900.png" height="80%" width="80%" alt="Setting Up in Azure"/>
-<br />
-<br />
-Once I've connected to the VM I will install and enable IIS (Internet Information Servies) by going to Control Panel> Programs> Turn Windows Features On or Off> Internet Information Services and enable it then World Wide Web Services> Application Development Features and enable CGI:  <br/>
-<img src="https://imgur.com/0MyNsKC.png" height="80%" width="80%" alt="Setting Up in Azure"/>
-<br />
-<br />
-Then go to Common HTTP Features dropdown and enable all features. Then apply the changes:  <br/>
-<img src="https://imgur.com/6Y6VzZH.png" height="80%" width="80%" alt="Setting Up in Azure"/>
-<br />
-<br />
-I can test that the web server installed correctly by typing in the loopback IP (127.0.0.1) in the internet browser and this page should load:  <br/>
-<img src="https://imgur.com/XdKGpGl.png" height="80%" width="80%" alt="Setting Up in Azure"/>
-<br />
-<br />
-Now I need to install PHP manager for IIS Setup:  <br/>
+<p>This will serve as a container of sorts (like a folder) that will hold our resources (Virtual Machines)</p>
+
+- Go to Azure Portal
+
+![image](https://github.com/user-attachments/assets/6f75e551-4d66-4af6-a20e-8a1f6fa831fe)
+
+- Go to Resource Group
+
+![image](https://github.com/user-attachments/assets/37506426-1785-44af-8dff-d2fbf4735d20)
+
+- Create Resource Group
+
+![image](https://github.com/user-attachments/assets/d1571f43-284a-4721-b0ad-1d170b33273e)
+
+- Name the Resource Group
+
+![image](https://github.com/user-attachments/assets/c45b31c1-83c8-4e6e-8e25-20b0be0eb104)
+
+- Review and Create Resource Group
+
+![image](https://github.com/user-attachments/assets/b98e48a6-a504-44df-899a-2b91a9354f7e)
+
+- Create Resource Group
+
+![image](https://github.com/user-attachments/assets/cfa87af7-f3c9-44aa-8912-4d34c05ed2b8)
+
+- Resource Group Succesfully created
+
+![image](https://github.com/user-attachments/assets/c2859c23-b3cb-4c60-89ca-c436937415ed)
+
+<H2>Step 2: Creating Resource (Virtual Machine)</H2>
+
+- Return to the Azure Portal and find the "Virtual Machines" option (You can search it in the searchbar if you cant find the option in the dashboard) 
+
+![image](https://github.com/user-attachments/assets/37ac9f7a-e86c-44b7-aa37-d125469a692f)
+
+- Create a virtual machine resource 
+
+![image](https://github.com/user-attachments/assets/64829dcf-3278-4353-a19d-dc6f9425a77f)
+
+- Assign the VM to the Resource Group that was created
+
+![image](https://github.com/user-attachments/assets/d101a9e4-3db9-4de2-b485-556884d23b03)
+
+- Fill out these details:<br> 
+-Virtual Machine Name<br>
+-Region [!!IMPORTANT!! Make sure that the region used to create the resource group is the same as the region as the VM you are creating, might run into issues otherwise] <br>
+-Image [we are going to make a Windows 10 VM so make sure to select the Windows 10 pro option for image]<br>
+
+![image](https://github.com/user-attachments/assets/6d08279c-cba8-4fa2-94d2-1f180a82f7e9)
+
+- For optimal performance I will use 2cpus as the standard size<br>
+
+![image](https://github.com/user-attachments/assets/08cfa758-8454-4343-9665-f5081ebfdd80)
+
+- Create Username and password 
+
+![image](https://github.com/user-attachments/assets/028d853e-63a4-4d23-938e-b3c39daa1d01)
+
+Confirm Licensing 
+
+![image](https://github.com/user-attachments/assets/d25e7c66-a950-461c-a7fb-6e1109460123)
+
+- Review and Create 
+
+![image](https://github.com/user-attachments/assets/bdce6266-ec36-43a7-9aaa-9ec34b2c6a10)
+
+![image](https://github.com/user-attachments/assets/dd270697-8d60-4b08-944e-e45ddae3e3ca)
+
+- Virtual Machine (Windows 10 Pro) Successfully Created.<br>
+
+<h2>Step 3: Use RDP to log into the windows vm </h2>
+
+- Return to the Virtual Machine Dashboard in the Azure portal
+
+![image](https://github.com/user-attachments/assets/a2e686dc-d035-432b-a079-18927560bc76)
+
+- Jot down the Public IP adresses of the Windows VM 
+
+![image](https://github.com/user-attachments/assets/1a8e4a73-f175-42fb-bb68-6ba3ab1b18ba)
+
+- If on Windows press Windows key -> Open RDP If on MAC download RDP program in APP store and put in the IP adress of the Windows VM 
+
+![image](https://github.com/user-attachments/assets/5f159faa-a725-4e26-b101-de3f7121278e)
+
+- Enter the Log in credentials and log in to the machine 
+
+![image](https://github.com/user-attachments/assets/ea9d83e9-20e4-4f72-860a-85defe141e06)
+
+<h2>Step 4: Install and enable IIS wtih CGI (Internet Information Services| Windows web server ) </h2>
+
+- Navigate to to the Control Panel -> Programs -> Turn Windows Features On or Off -> Internet Information Services
+
+- Now Enable CGI: World Wide Web Services -> Application Development -> CGI 
+
+![image](https://github.com/user-attachments/assets/ef0e4a86-1e22-4d5f-abf0-5124d2968245)
+
+- 🎉 Awesome! By enabling IIS, you can now host web applications directly on your machine. Enabling CGI takes it a step further, allowing your web app to dynamically adapt based on user interactions and database inputs. This sets the stage perfectly for the mighty ticketing system to establish its roots!
+
+<H2>Step 5: Enable all Common HTTP Features  (Virtual Machine)</H2>  
+
+- Navigate to the Common HTTP Features and enable all features. Then apply the changes
+![image](https://github.com/user-attachments/assets/2e0624ed-5640-4258-ac22-4f8341ce777d)
+- Press ok to apply the changes we made 
+![image](https://github.com/user-attachments/assets/df2d20e5-231b-4a70-9ead-262a4f2dfed3)
+
+
+<H2>Step 6: Test Web Server Installation </H2>
+
+- Type the loopback IP (127.0.0.1) in the internet browser  to see if the web server is up and running this page should be showing 
+![image](https://github.com/user-attachments/assets/6a2b24c9-2ab6-44fa-9bc8-33b32b76eebc)
+
+<H2>Step 7: Set up PHP </H2>
+
+- Install PHP manager for IIS Setup:  <br/>
 <img src="https://imgur.com/RuAUGw1.png" height="80%" width="80%" alt="Setting Up in Azure"/>
-<br />
-<br />
-Install IIS URL Rewrite Module:  <br/>
+ 
+- This sets up PHP, the language responsible with communnicating with the database,formating and displaying that data for us. This means that PHP is responsible for keepign track of the tickets, permissions etc. A.K.A its really important   
+
+- Install IIS URL Rewrite Module:  <br/>
+
 <img src="https://imgur.com/465p9DH.png" height="80%" width="80%" alt="Setting Up in Azure"/>
-<br />
-<br />
-Once those have installed I will create a PHP directory on the C drive:  <br/>
+
+- Create a PHP directory on the C drive
+
 <img src="https://imgur.com/CEsoJp6.png" height="80%" width="80%" alt="Setting Up in Azure"/>
-<br />
-<br />
-Now I'll download PHP and extract the zip file in the PHP directory I just made:  <br/>
+
+- Download PHP and extract the zip file in the PHP directory we just made:  
+
 <img src="https://imgur.com/LoYw0cZ.png" height="80%" width="80%" alt="Setting Up in Azure"/>
-<br />
-<br />
-Download Microsoft Visual C++:  <br/>
+
+<H2>Step 8: Download Microsodt Visual C++ </H2>
+
 <img src="https://imgur.com/SocF97p.png" height="80%" width="80%" alt="Setting Up in Azure"/>
-<br />
-<br />
-Download MySQL:  <br/>
+
+
+<H2>Step 9: Download MYSQL  </H2>
+
 <img src="https://imgur.com/dFdQagT.png" height="80%" width="80%" alt="Setting Up in Azure"/>
-<br />
-<br />
-Next, I have to setup the login credentials and I'll write them down just so I remember, since this is only a project. Do not write passwords down in real life:  <br/>
+
+  - This is the database will hold all of the information we need for the ticketing system
+
+- Setup the login credentials I'll write them down just so I remember, since this is only a project. Do not write passwords down in real life:  <br/>
 <img src="https://imgur.com/SeJVW6M.png" height="80%" width="80%" alt="Setting Up in Azure"/>
-<br />
-<br />
-Open IIS as an admin:  <br/>
+
+- Write them down in case you forget these creditenials are important. This is only a project it is bad practice to have this written down, DO NOT DO THIS IN REAL LIFE
+
+<H2>Step 11: Open IIS as an admin</H2> 
 <img src="https://imgur.com/gFmrka6.png" height="80%" width="80%" alt="Setting Up in Azure"/>
 <br />
 <br />
