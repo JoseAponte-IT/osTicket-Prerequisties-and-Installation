@@ -199,7 +199,7 @@ Confirm Licensing
 <H2>Step 12: Navigate to osTicket Home -> Manage Server(On the right side ) -> Restart </H2>
 <img src="https://imgur.com/F83Qw2a.png" height="80%" width="80%" alt="Setting Up in Azure"/>
 
-<H2>Step 13: Download osTicket -> copy the upload file to the wwwroot file to the inetpub directory</H2>
+<H2>Step 13: Download osTicket -> copy the upload file into the wwwroot folder| Its in THE C drive - > inetpub -> wwwroot folder </H2>
 <img src="https://imgur.com/op4Cs2g.png" height="80%" width="80%" alt="Setting Up in Azure"/>
 
 <h2>Step 14: Rename upload file to osTicket </h2>  
@@ -208,10 +208,10 @@ Confirm Licensing
 <h2> Step 15: Reload IIS -> Manage Server(On the right side ) -> Restart the server -> then click Browse *80 (http) on the right side </h2>
 <img src="https://imgur.com/JnqQOJD.png" height="80%" width="80%" alt="Setting Up in Azure"/>
 
-This page should open: 
+- This page should open: 
 <img src="https://imgur.com/J4E020x.png" height="80%" width="80%" alt="Setting Up in Azure"/>
 
-- 🎉 Awesome we have got the osTicket webpage up and running now lets configure it so we can use it
+- 🎉 Awesome we have got the osTicket webpage up and running, now lets configure it so we can use it
 
 <h2>Step 16: Enable recommended extensions</h2>
 
@@ -225,7 +225,7 @@ This page should open:
 
 <img src="https://imgur.com/yZbaGml.png" height="80%" width="80%" alt="Setting Up in Azure"/>
 
-<h2>Step 17: Browse in File Explorer to the C drive -> osTicket -> Include -> ost-sampleconfig.php -> Remove "sample" from the name </h2>Next browse in file explorer to C drive> osTicket> include> ost-sampleconfig.php and remove the "sample" from the name:  <br/>
+<h2>Step 17: Browse in File Explorer to the C drive -> osTicket -> Include -> ost-sampleconfig.php -> Remove "sample" from the name </h2>
 
 <img src="https://imgur.com/k6cfJaY.png" height="80%" width="80%" alt="Setting Up in Azure"/>
 
@@ -248,12 +248,15 @@ This page should open:
 
 <img src="https://imgur.com/xoW0TMX.png" height="80%" width="80%" alt="Setting Up in Azure"/>
 
-<h2>Step 23: In HeidiSQL right click Unnamed -> Create -> New Database> Name it osTicket -> OK. 
- Then continue to fill out the database portion of osTicket setup. Click Install Now when done</h2>
+<h2>Step 23: In HeidiSQL right click Unnamed -> Create -> New Database> Name it osTicket -> OK -> Fill out the database portion of osTicket setup -> Click Install Now </h2>
 
-<H2>Last steps:  Clean up go to C driveV-> inetpubV-> wwwrootV-> osTicket and look for the setup file and delete it
+![image](https://github.com/user-attachments/assets/0289b5a4-65e7-4de3-8532-04848056e371)
 
-Then go to C drive -> inetpub -> wwwroot -> osTicket -> include right click on ost-config.php -> Properties -> Security -> Advanced -> Select Everyone and click edit -> only leave Read & Execute and Read checked -> then apply settings </H2>
+<H2> Step 24: Clean up go to C driveV -> inetpubV -> wwwrootV-> osTicket and look for the setup file and delete it
+
+- Then go to C drive -> inetpub -> wwwroot -> osTicket -> include right click on ost-config.php -> Properties -> Security -> Advanced -> Select Everyone and click edit -> only leave Read & Execute and Read checked -> then
+apply settings </H2>
+
 <img src="https://imgur.com/o4GB231.png" height="80%" width="80%" alt="Setting Up in Azure"/>
 
   # 🎉Congratulations
